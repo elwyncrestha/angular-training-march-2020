@@ -6,6 +6,8 @@
         <h6 class="card-subtitle mb-2 text-muted">Location: {{selectedShop?.location}}</h6>
         <p class="card-text">{{selectedShop?.description}}</p>
         <p class="font-weight-bold">Opening Date: {{selectedShop?.openingDate | date}}</p>
+        <button (click)="view()" type="button" class="btn btn-info">View it</button>
+        <button (click)="hide()" type="button" class="btn btn-danger">Hide me</button>
       </div>
     </div>
   </div>

@@ -2,20 +2,36 @@
   <h1 class="display-4">About Us</h1>
   <p class="lead">Find our local stores.</p>
   <hr class="my-4">
+  <div *ngIf="viewingShop" class="row">
+    <div class="col-md-12">
+      <div class="alert alert-info">User is viewing {{viewingShop?.name}} located
+        at {{viewingShop?.location}}</div>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-md-3 mb-5" *ngFor="let shop of shops">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{shop?.name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Location: {{shop?.location}}</h6>
-          <p class="card-text">{{shop?.description}}</p>
-          <p class="font-weight-bold">Opening Date: {{shop?.openingDate | date}}</p>
-          <button (click)="viewDetail(shop?.id)" type="button" class="btn btn-primary">View Detail</button>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6 mb-5" *ngFor="let shop of shops">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{shop?.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Location: {{shop?.location}}</h6>
+              <p class="card-text">{{shop?.description}}</p>
+              <p class="font-weight-bold">Opening Date: {{shop?.openingDate | date}}</p>
+              <button (click)="viewDetail(shop?.id)" class="btn btn-primary" type="button">View Detail
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="col-md-6">
+      <app-about-detail (hideEmitter)="respondHide($event)"
+                        (viewEmitter)="respondView($event)"
+                        *ngIf="selectedShop"
+                        [selectedShop]="selectedShop"></app-about-detail>
+    </div>
   </div>
-  <app-about-detail *ngIf="selectedShop" [selectedShop]="selectedShop"></app-about-detail>
 </div>
 
 

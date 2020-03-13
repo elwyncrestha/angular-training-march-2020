@@ -10,6 +10,7 @@ export class AboutComponent implements OnInit {
 
   shops: Array<Shop> = new Array<Shop>();
   selectedShop: Shop;
+  viewingShop: Shop;
 
   constructor() { }
 
@@ -27,5 +28,15 @@ export class AboutComponent implements OnInit {
 
   public viewDetail(shopId: number): void {
     this.selectedShop = this.shops[shopId];
+  }
+
+  respondHide($event: boolean) {
+    if ($event) {
+      this.selectedShop = null;
+    }
+  }
+
+  respondView($event: number) {
+    this.viewingShop = this.shops[$event];
   }
 }
