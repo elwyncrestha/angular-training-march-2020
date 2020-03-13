@@ -7,6 +7,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { AboutComponent } from './component/about/about.component';
 import { HomeComponent } from './component/home/home.component';
 import { AboutDetailComponent } from './component/about/about-detail/about-detail.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AboutDetailComponent } from './component/about/about-detail/about-detai
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

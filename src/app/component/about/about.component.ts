@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Shop} from '../../model/shop';
+import {ShopService} from '../../service/shop.service';
 
 @Component({
   selector: 'app-about',
@@ -11,19 +12,18 @@ export class AboutComponent implements OnInit {
   shops: Array<Shop> = new Array<Shop>();
   selectedShop: Shop;
   viewingShop: Shop;
+  error: string;
 
-  constructor() { }
+  constructor(private shopService: ShopService) {
+  }
 
   ngOnInit() {
-    for (let i = 0; i < 10; i ++) {
-      const shop = new Shop();
-      shop.id = i;
-      shop.name = `Shop ${i + 1}`;
-      shop.location = `Location ${i + 1}`;
-      shop.description = 'This is shop. This is shop. This is shop. This is shop. This is shop. This is shop. This is shop. ';
-      shop.openingDate = new Date();
-      this.shops.push(shop);
-    }
+    this.shopService.getAll().subscribe((response: any) => {
+      this.shops = response;
+    }, error => {
+      console.error(error);
+      this.error = 'Could not load shops';
+    });
   }
 
   public viewDetail(shopId: number): void {
