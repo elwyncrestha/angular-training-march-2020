@@ -8,6 +8,9 @@ import { AboutComponent } from './component/about/about.component';
 import { HomeComponent } from './component/home/home.component';
 import { AboutDetailComponent } from './component/about/about-detail/about-detail.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ShopFormComponent } from './component/shop-form/shop-form.component';
+import {FormsModule} from "@angular/forms";
+import { SubscribeComponent } from './component/subscribe/subscribe.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import {HttpClientModule} from '@angular/common/http';
     NavbarComponent,
     AboutComponent,
     HomeComponent,
-    AboutDetailComponent
+    AboutDetailComponent,
+    ShopFormComponent,
+    SubscribeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
