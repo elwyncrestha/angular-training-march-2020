@@ -9,7 +9,7 @@ import {Shop} from '../../../model/shop';
 export class AboutDetailComponent implements OnInit {
   @Input() selectedShop: Shop;
   @Output() hideEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() viewEmitter: EventEmitter<number> = new EventEmitter<number>();
+  @Output() viewEmitter: EventEmitter<Shop> = new EventEmitter<Shop>();
 
   constructor() {
   }
@@ -22,6 +22,6 @@ export class AboutDetailComponent implements OnInit {
   }
 
   public view(): void {
-    this.viewEmitter.emit(this.selectedShop.id);
+    this.viewEmitter.emit(this.selectedShop);
   }
 }

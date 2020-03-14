@@ -16,14 +16,14 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <div class="col-md-6 mb-5" *ngFor="let shop of shops">
+        <div class="col-md-6 mb-5" *ngFor="let shop of shops; let i = index">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{shop?.name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">Location: {{shop?.location}}</h6>
               <p class="card-text">{{shop?.description}}</p>
               <p class="font-weight-bold">Opening Date: {{shop?.openingDate | date}}</p>
-              <button (click)="viewDetail(shop?.id)" class="btn btn-primary" type="button">View Detail
+              <button (click)="viewDetail(i)" class="btn btn-primary" type="button">View Detail
               </button>
             </div>
           </div>

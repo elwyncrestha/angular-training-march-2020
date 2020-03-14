@@ -26,8 +26,8 @@ export class AboutComponent implements OnInit {
     });
   }
 
-  public viewDetail(shopId: number): void {
-    this.selectedShop = this.shops[shopId];
+  public viewDetail(shopIndex: number): void {
+    this.selectedShop = this.shops[shopIndex];
   }
 
   respondHide($event: boolean) {
@@ -36,7 +36,7 @@ export class AboutComponent implements OnInit {
     }
   }
 
-  respondView($event: number) {
-    this.viewingShop = this.shops[$event];
+  respondView($event: Shop) {
+    this.viewingShop = $event;
   }
 }
