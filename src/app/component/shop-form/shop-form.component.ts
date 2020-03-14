@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-shop-form',
@@ -6,10 +7,25 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./shop-form.component.css']
 })
 export class ShopFormComponent implements OnInit {
-  constructor() {
+
+  shopForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.buildForm();
   }
 
+  private buildForm(): void {
+    this.shopForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: [''],
+      location: [''],
+    });
+  }
+
+  submit() {
+    console.log(this.shopForm.value);
+  }
 }

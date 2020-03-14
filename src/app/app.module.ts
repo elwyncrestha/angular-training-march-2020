@@ -9,7 +9,7 @@ import { HomeComponent } from './component/home/home.component';
 import { AboutDetailComponent } from './component/about/about-detail/about-detail.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ShopFormComponent } from './component/shop-form/shop-form.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SubscribeComponent } from './component/subscribe/subscribe.component';
 
 @NgModule({
@@ -26,7 +26,8 @@ import { SubscribeComponent } from './component/subscribe/subscribe.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
