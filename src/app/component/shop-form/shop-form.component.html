@@ -2,6 +2,12 @@
   <h1 class="display-4">Shop Form</h1>
   <p class="lead">Please add shops</p>
   <hr class="my-4">
+  <div class="alert alert-success" *ngIf="responseFlag.success">
+    Successfully added shop!!!
+  </div>
+  <div class="alert alert-danger" *ngIf="responseFlag.failure">
+    Failed to add shop!!!
+  </div>
 
   <form (ngSubmit)="submit()" [formGroup]="shopForm">
     <div class="form-group">
@@ -18,13 +24,5 @@
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="shopForm.invalid">Submit</button>
   </form>
-
-  <div class="row">
-    <div class="col-md-12 p-4">
-      <pre>
-        {{shopForm.value | json}}
-      </pre>
-    </div>
-  </div>
 </div>
 

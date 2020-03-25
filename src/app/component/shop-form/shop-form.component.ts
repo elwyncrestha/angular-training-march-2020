@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ShopService} from '../../service/shop.service';
+import {Shop} from '../../model/shop';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-shop-form',
@@ -9,8 +12,16 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class ShopFormComponent implements OnInit {
 
   shopForm: FormGroup;
+  responseFlag = {
+    success: false,
+    failure: false
+  };
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private shopService: ShopService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -26,6 +37,15 @@ export class ShopFormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.shopForm.value);
+    const model = this.shopForm.value as Shop;
+    this.shopService.save(model).subscribe(() => {
+      this.responseFlag.failure = false;
+      this.responseFlag.success = true;
+      this.router.navigate(['/about']);
+    }, error => {
+      console.error(error);
+      this.responseFlag.failure = true;
+      this.responseFlag.success = false;
+    });
   }
 }

@@ -18,12 +18,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.shopService.getAll().subscribe((response: any) => {
-      this.shops = response;
-    }, error => {
-      console.error(error);
-      this.error = 'Could not load shops';
-    });
+    this.fetchData();
   }
 
   public viewDetail(shopIndex: number): void {
@@ -38,5 +33,24 @@ export class AboutComponent implements OnInit {
 
   respondView($event: Shop) {
     this.viewingShop = $event;
+  }
+
+  public deleteShop(id: number) {
+    this.shopService.delete(id).subscribe(() => {
+      this.fetchData();
+    }, error => {
+      console.error(error);
+      alert('Failed to delete');
+    });
+  }
+
+  private fetchData(): void {
+    this.shopService.getAll().subscribe((response: any) => {
+      this.shops = response;
+    }, error => {
+      console.error(error);
+      this.error = 'Could not load shops';
+    });
+
   }
 }

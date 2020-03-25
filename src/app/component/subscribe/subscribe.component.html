@@ -8,7 +8,7 @@
                required
                [(ngModel)]="emailAddress" name="email"
                #email="ngModel">
-        <div [hidden]="email.valid || email.pristine"
+        <div [hidden]="(email.pristine || email.untouched) || email.valid"
              class="alert alert-danger">
           Email is required
         </div>

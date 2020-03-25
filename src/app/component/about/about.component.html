@@ -21,17 +21,32 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <div class="col-md-6 mb-5" *ngFor="let shop of shops; let i = index">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{shop?.name}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Location: {{shop?.location}}</h6>
-              <p class="card-text">{{shop?.description}}</p>
-              <p class="font-weight-bold">Opening Date: {{shop?.openingDate | date}}</p>
-              <button (click)="viewDetail(i)" class="btn btn-primary" type="button">View Detail
-              </button>
-            </div>
-          </div>
+        <div class="col-md-6 mb-5">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Location</th>
+              <th scope="col">Description</th>
+              <th scope="col">Opening Date</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let shop of shops; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{shop?.name}}</td>
+              <td>{{shop?.location}}</td>
+              <td>{{shop?.description}}</td>
+              <td>{{shop?.openingDate | date}}</td>
+              <td>
+                <button (click)="viewDetail(i)" class="btn btn-primary" type="button">View</button>
+                <button (click)="deleteShop(shop?.id)" class="btn btn-danger" type="button">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
