@@ -26,4 +26,9 @@ export class ShopService {
     const api = `${AppConstant.SERVER_URL}${this.URL}/${id}`;
     return this.http.delete(api);
   }
+
+  public getById(id: number): Observable<any> {
+    const api = `${AppConstant.SERVER_URL}${this.URL}/${id}`;
+    return this.http.get(api);
+  }
 }

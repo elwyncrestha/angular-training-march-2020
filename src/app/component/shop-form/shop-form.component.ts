@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ShopService} from '../../service/shop.service';
 import {Shop} from '../../model/shop';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-shop-form',
@@ -16,23 +16,38 @@ export class ShopFormComponent implements OnInit {
     success: false,
     failure: false
   };
+  shop: Shop = new Shop();
 
   constructor(
     private formBuilder: FormBuilder,
     private shopService: ShopService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
     this.buildForm();
+    this.activatedRoute.queryParamMap.subscribe((value) => {
+      const shopId = Number(value.get('shopId'));
+      if (shopId && shopId > 0) {
+        this.shopService.getById(shopId).subscribe((response: any) => {
+          this.shop = response;
+          this.buildForm();
+        }, error => {
+          console.error(error);
+        });
+      }
+    });
   }
 
   private buildForm(): void {
     this.shopForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      description: [''],
-      location: [''],
+      id: [this.shop.id],
+      name: [this.shop.name, Validators.required],
+      description: [this.shop.description],
+      location: [this.shop.location],
+      openingDate: [this.shop.openingDate]
     });
   }
 

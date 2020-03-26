@@ -41,8 +41,14 @@
               <td>{{shop?.description}}</td>
               <td>{{shop?.openingDate | date}}</td>
               <td>
-                <button (click)="viewDetail(i)" class="btn btn-primary" type="button">View</button>
-                <button (click)="deleteShop(shop?.id)" class="btn btn-danger" type="button">Delete</button>
+                <button (click)="viewDetail(i)" class="btn btn-primary" type="button">
+                  <i class="fas fa-info"></i>
+                </button>
+                <a [queryParams]="{shopId: shop?.id}" [routerLink]="['/add-shop']"
+                   class="btn btn-info"><i class="fas fa-edit"></i></a>
+                <button (click)="deleteShop(shop?.id)" class="btn btn-danger" type="button">
+                  <i class="fas fa-trash"></i>
+                </button>
               </td>
             </tr>
             </tbody>
